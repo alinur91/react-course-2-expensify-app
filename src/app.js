@@ -4,7 +4,6 @@ import {Provider} from 'react-redux';// We're going to be using the provider com
 import AppRouter from './routers/AppRouter';
 import configureStore from './store/configureStore';
 import {addExpense} from './actions/expenses';
-import {setTextFilter} from './actions/filters';
 import getVisibleExpenses from './selectors/expenses';
 import 'normalize.css/normalize.css'; /* all browsers start from the exact same place we did it that by adding in a SCSS reset */
 import './styles/styles.scss';
@@ -19,19 +18,19 @@ const store = configureStore() /* we can use store.dispatch,store.subscribe */
 // We're going to be using the provider component once at the root of our app
 //We're going to be using connect for every single component that needs to connect to the redux store
 
-store.dispatch(addExpense({description: 'Water bill',amount: 100})) /* kogda kazhdyi raz dispatch delaem,addExpense() vernet object,i dispatch triggers createStore(combineReducers({ expenses: expensesReducer,filters: filtersReducer})) i dispatch vernet {expenses: [{id: 123,description:'asd',note:'as',amount:123}]} */
-store.dispatch(addExpense({description: 'Gas bill',createdAt: 100,})) /* kogda kazhdyi raz dispatch delaem,addExpense() vernet object,i dispatch triggers createStore(combineReducers({ expenses: expensesReducer,filters: filtersReducer})) i dispatch vernet {expenses: [{id: 123,description:'asd',note:'as',amount:123},{id: 455,description:'bbb',note:'2',amount:456}]} */
-store.dispatch(addExpense({description: 'Rent',amount: 10500}))
+//store.dispatch(addExpense({description: 'Water bill',amount: 100})) /* kogda kazhdyi raz dispatch delaem,addExpense() vernet object,i dispatch triggers createStore(combineReducers({ expenses: expensesReducer,filters: filtersReducer})) i dispatch vernet {expenses: [{id: 123,description:'asd',note:'as',amount:123}]} */
+//store.dispatch(addExpense({description: 'Gas bill',createdAt: 100,})) /* kogda kazhdyi raz dispatch delaem,addExpense() vernet object,i dispatch triggers createStore(combineReducers({ expenses: expensesReducer,filters: filtersReducer})) i dispatch vernet {expenses: [{id: 123,description:'asd',note:'as',amount:123},{id: 455,description:'bbb',note:'2',amount:456}]} */
+//store.dispatch(addExpense({description: 'Rent',amount: 10500}))
 /* dispatch degen {expenses: [],filter:{}} napalnyaem,potom getVisibleExpenses()-pen vivodim updated array,setTextFilter() degen zna4it hotim [{description:}] vot eto pokazal */
 // store.dispatch(setTextFilter('bil')) /* kogda kazhdyi raz dispatch delaem,addExpense() vernet object,i dispatch triggers createStore(combineReducers({ expenses: expensesReducer,filters: filtersReducer})) i dispatch vernet {expenses: [{id: 123,description:'asd',note:'as',amount:123},{id: 455,description:'bbb',note:'2',amount:456}], filters: {text: 'water',,sortBy: 'date',startDate: undefined,endDate: undefined}} */
 
 // setTimeout( ()=>{store.dispatch(setTextFilter('water'))},3000)
 
-const state =store.getState() /*store.getState() vernet {expenses: [{id: 123,description:'asd',note:'as',amount:123},{id: 455,description:'bbb',note:'2',amount:456}], filters: {text: 'water',,sortBy: 'date',startDate: undefined,endDate: undefined}}  */
+// const state =store.getState() /*store.getState() vernet {expenses: [{id: 123,description:'asd',note:'as',amount:123},{id: 455,description:'bbb',note:'2',amount:456}], filters: {text: 'water',,sortBy: 'date',startDate: undefined,endDate: undefined}}  */
 // console.log(state)
-const visibleExpenses = getVisibleExpenses(state.expenses,state.filters) 
+// const visibleExpenses = getVisibleExpenses(state.expenses,state.filters) 
 /*state.expenses dege array of objects, a state.filters degen object {},getVisibleExpenses() returns updated array of objects   */
- console.log(visibleExpenses)
+//  console.log(visibleExpenses)
 // stateles functional component(js function,it's stateless,they don't use this.state) vs  class based component
 //React component is just ES6 class
 
