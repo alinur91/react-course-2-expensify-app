@@ -11,7 +11,7 @@ module.exports = env =>{
  return { /*path is the absolute path on our machine to where u want to output that webpack file.Where we want to put bundle.js file?I want to put bundle.js inside of the public folder   */
     entry: './src/app.js',
     output: {
-        path: path.join(__dirname,'public'),
+        path: path.join(__dirname,'public','dist'),
         filename: 'bundle.js'
     },
     module: {
@@ -46,7 +46,8 @@ module.exports = env =>{
     devtool: isProduction?'source-map':'inline-source-map',
     devServer: {
         contentBase: path.join(__dirname,'public'),
-        historyApiFallback: true /*this tells that we're going to be handling routing via our client-side code, and this return this page for all 404 routes  */
+        historyApiFallback: true, /*this tells that we're going to be handling routing via our client-side code, and this return this page for all 404 routes  */
+        publicPath: '/dist/'
     }
 }
 }
