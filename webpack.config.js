@@ -1,9 +1,14 @@
 //entry point-where does our app kick off-----> src/app.js
 //where the output file bundle.js gde?Thats going to allow us to run webpack successfuly
 const path = require('path')
+const ExtractTextPlugin = require('extract-text-webpack-plugin')
 /* absoulute path to public folder */
 
-module.exports ={ /*path is the absolute path on our machine to where u want to output that webpack file.Where we want to put bundle.js file?I want to put bundle.js inside of the public folder   */
+module.exports = env =>{
+    const isProduction = env === 'production'
+    const CSSExtract = new ExtractTextPlugin('styles.css')
+
+ return { /*path is the absolute path on our machine to where u want to output that webpack file.Where we want to put bundle.js file?I want to put bundle.js inside of the public folder   */
     entry: './src/app.js',
     output: {
         path: path.join(__dirname,'public'),
@@ -17,19 +22,36 @@ module.exports ={ /*path is the absolute path on our machine to where u want to 
         },
     {
         test: /\.s?css$/,
-        use: [
-            'style-loader',
-            'css-loader',
-            'sass-loader'
-        ]
+        use: CSSExtract.extract({
+            use: [
+                {
+                    loader: 'css-loader',
+                    options: {
+                        sourceMap: true
+                    }
+                },
+                {
+                    loader: 'sass-loader',
+                    options: {
+                        sourceMap: true
+                    }
+                }
+            ]
+        })
     }]
     },
-    devtool: 'cheap-module-eval-source-map',
+    plugins: [
+        CSSExtract
+    ],
+    devtool: isProduction?'source-map':'inline-source-map',
     devServer: {
         contentBase: path.join(__dirname,'public'),
         historyApiFallback: true /*this tells that we're going to be handling routing via our client-side code, and this return this page for all 404 routes  */
     }
 }
+}
+
+
 /* loaderi govoryat webpacky convert SCss to old CSS */
 
 /* run some file whenever webpack encouters styles.css,
