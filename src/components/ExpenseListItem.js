@@ -1,13 +1,20 @@
 import React from 'react';
 import {Link} from 'react-router-dom';
+import moment from 'moment';
+import numeral from 'numeral'
+
 /* kogda componenty podklu4aesh connect() k store {expenses: [{}],filters:{}} to 4erez propsa est dostyp u componenty k dispatch(someAction()) */
  const ExpenseListItem = ({id,description,amount,createdAt}) => ( /* sdez props desctrutre.<ExpenseListItem key={expense.id} description={expense.description},amount:{expense.amount},createdAt: {expense.createdAt} /> */
     <div>
     <Link to={`/edit/${id}`}> <h3 > {description}. </h3> </Link> 
-        <p>{amount} - {createdAt}</p>
+        <p>
+        {numeral(amount/100).format('$0,0.00')} 
+        - 
+        {moment(createdAt).format('MMMM Do, YYYY')}
+        </p>
        
     </div>
-)
+) 
 //ExpenseListItem it takes some data in it renders smth,add a shapshot for what it renders.Its going to allow us to track changes to the components over time
 export default ExpenseListItem /* v connect() v function ne zasovivaem potomy shto nam state ne nuzhen {expenses: [{}],filters:{}},mi connectiem shtoby k dispatch dostyp bil u componenty */
 /*  dispatch(removeExpense({id})) delaem shtoby combineStore(expenses: ExpenseReducer) zarobatal vernet updated array, i s pomoshu connecta berem stae i renderem v componente ExpensesList renderim */

@@ -15,7 +15,6 @@ exports[`should render ExpenseList with expenses 1`] = `
     createdAt={0}
     description="xbox"
     id="123"
-    key="123"
     note=""
   />
   <ExpenseListItem
@@ -23,7 +22,6 @@ exports[`should render ExpenseList with expenses 1`] = `
     createdAt={-345600000}
     description="toyota camry 60 2020"
     id="456"
-    key="456"
     note=""
   />
   <ExpenseListItem
@@ -31,7 +29,6 @@ exports[`should render ExpenseList with expenses 1`] = `
     createdAt={777600000}
     description="motocycle"
     id="789"
-    key="789"
     note=""
   />
 </div>
